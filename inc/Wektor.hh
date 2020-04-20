@@ -6,36 +6,64 @@
 
 
 /*
- *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
- *  i jakie ma glowne cechy.
+ *  Wektor - tablica ROZMIAR-elementowa.
  */
 class Wektor {
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
-   */
+    /*
+    * tablica typu TYP o rozmiarze ROZMIAR
+    */
+    TYP tab[ROZMIAR];
+
   public:
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-   */    
+    /*
+    * inicjalizacja wektora
+    */
+    Wektor();
+    TYP operator [] (int Ind) const {return tab[Ind];}
+    TYP& operator [] (int Ind) {return tab[Ind];}
+    /*
+    * funkcja zwracajaca dlugosc wektora
+    */
+    double dlugosc();
+    /*
+    * Przeciazenie operatora dodawania dla wektorow.
+    */
+    Wektor operator + (Wektor We);
+
+    /*
+    * Przeciazenie operatora odejmowania dla wektorow. 
+    */
+    Wektor operator - (Wektor We);
+    /*
+     * Przeciazenie operatora mnozenia dla wektorow ( iloczyn skalarny).
+     */
+    Wektor operator * (Wektor We);
+    /*
+    * Przeciazenie operatora mnozenia dla iloczynu wektor * liczba.
+     */
+    Wektor operator * (TYP liczba);
+    /*
+     * Przeciazenie operatora dzielenia dla ilorazu wektor/liczba.
+    */
+    Wektor operator / (TYP liczba);
+
 };
 
 
 /*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt 
+ * To przeciazenie sluzy do pobierania wektorow ze strumienia wejsciowego.
+ * Bedzie akceptowalo dane typu TYP, inaczej bedzie ustalalo stan
+ * Strm -> failbit. 
  */
 std::istream& operator >> (std::istream &Strm, Wektor &Wek);
 
 /*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt 
+ * To przeciazenie sluzy do wysylania wektora na strumien wyjsciowy.
  */
 std::ostream& operator << (std::ostream &Strm, const Wektor &Wek);
+
+
+
+
 
 #endif

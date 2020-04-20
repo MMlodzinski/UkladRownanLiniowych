@@ -2,39 +2,56 @@
 #define MACIERZ_HH
 
 #include "rozmiar.h"
+#include "Wektor.hh"
+
 #include <iostream>
 
 
 /*
- *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
- *  i jakie ma glowne cechy.
+ *  Klasa Macierz zawiera tablicę wektorow
+ * oraz metody odpowiednie dla macierzy
  */
-class Macierz {
+class Macierz 
+{
   /*
-   *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
-   */
+  * tablica wektorow o rozmiarze ROZMIAR
+  */
+  Wektor tab[ROZMIAR];
+
   public:
-  /*
-   *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-   */    
+    /*
+    * inicjalizacja macierzy
+    */
+    Macierz();
+    Wektor operator [] (int Ind) const {return tab[Ind];}
+    Wektor& operator [] (int Ind) {return tab[Ind];}
+    /*
+    *  przeciazenie operatora mnozenia dla operacji macierz*wektor, zwracajaca wektor 
+    */
+    Wektor operator * (Wektor We);
+    /*
+    * funkcja zwracajaca wyznacznik macierzy 
+    */
+    double wyznacznik();
+    /*
+    * metoda zamieniajaca wybrana z kolumn macierzy na wpodany wektor
+    */
+    Macierz podstawKolumne(Wektor We, int numerKolumny);
+    /*
+    * metoda - transpozycja macierzy
+    */
+    Macierz transpozycja();
 };
 
 
 /*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt 
+ * Przeciazenie operatora >> by na strumien wejsciowy przekazywac strukture Macierz
  */
 std::istream& operator >> (std::istream &Strm, Macierz &Mac);
 
 /*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt 
+ * Przeciazanie operatora, by na strumien wyjsiowy przekazywac 
+ * strukture Macierz
  */
 std::ostream& operator << (std::ostream &Strm, const Macierz &Mac);
 

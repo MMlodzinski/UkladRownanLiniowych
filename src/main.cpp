@@ -17,8 +17,36 @@ using namespace std;
 
 int main()
 {
-  UkladRownanLiniowych   UklRown;   // To tylko przykladowe definicje zmiennej
+  UkladRownanLiniowych   UklRown;  
+  Wektor nowy;
+  Macierz nowa;
+  
+
+
+    
+if(!cin.ios::eof()){
+  cin >> UklRown;
+  cout << endl << " Start programu " << endl << endl;
+  cout << " Macierz A^T :" << endl;
+  cout << UklRown.WezMacierzRownania() << endl;
+  cout << " Wektor wyrazow wolnych b :" << endl;
+  cout << UklRown.WezWektorWyrazowWolnych() << endl;
+  cout << " Rozwiazanie x = (x1, x2, x3) :" << endl;
+  cout << UklRown.rozwiazUklad() << endl;
+  
+  cout << "\t Wektor bledu Ax-b = " <<   UklRown.bladRozwiazania(UklRown);
+  cout << " Dlugosc wektora bledu |Ax-b| = " << UklRown.bladRozwiazania(UklRown).dlugosc() << endl;
+  
+
+ 
+
+
+}
+ 
 
   
-  cout << endl << " Start programu " << endl << endl;
+
+  
+
+return 0;
 }

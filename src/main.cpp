@@ -1,7 +1,6 @@
 #include <iostream>
-#include "Wektor.hh"
-#include "Macierz.hh"
-#include "UkladRownanLiniowych.hh"
+#include "rozmiar.h"
+#include "SWektor.hh"
 
 
 
@@ -17,7 +16,7 @@ using namespace std;
 
 int main()
 {
-  UkladRownanLiniowych   UklRown;  
+/*  UkladRownanLiniowych   UklRown;  
   Wektor nowy;
   Macierz nowa;
   
@@ -36,8 +35,31 @@ if(!cin.ios::eof()){
   
   cout << "\t Wektor bledu Ax-b = " <<   UklRown.bladRozwiazania(UklRown);
   cout << " Dlugosc wektora bledu |Ax-b| = " << UklRown.bladRozwiazania(UklRown).dlugosc() << endl;
-  
+  */
 
+ cout << endl
+       << " --------- Test klasy Wektor ----------" << endl
+       << endl;
+  
+  SWektor<double,ROZMIAR>    W, W_wynik;
+  
+  for (unsigned int Ind = 0; Ind < ROZMIAR; ++Ind) {
+    W[Ind] = Ind;
+  }
+
+  cout << "  Wyswietlenie wspolrzednych wektora: W" << endl
+       << "        " << W << endl
+       << endl;
+
+  W_wynik = W*2;
+  cout << "  Wyswietlenie wyniku: W*2" << endl
+       << "        " << W_wynik << endl
+       << endl;
+  
+  W_wynik = W*2-W;
+  cout << "  Wyswietlenie wyniku: W-W*0.5" << endl
+       << "        " << W_wynik << endl
+       << endl;
  
 
 
@@ -48,5 +70,5 @@ if(!cin.ios::eof()){
 
   
 
-return 0;
-}
+
+

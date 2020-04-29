@@ -34,14 +34,11 @@ __start__: ./test_wektora
 obj:
 	mkdir -p obj
 
-./test_wektora: obj obj/main.o obj/SWektor.o
-	g++ -o ./test_wektora obj/main.o obj/SWektor.o
+./test_wektora: obj obj/main.o
+	g++ -o ./test_wektora obj/main.o
 
 obj/main.o: src/main.cpp inc/SWektor.hh
 	g++ -c ${CXXFLAGS} -o obj/main.o src/main.cpp
-
-obj/SWektor.o: src/SWektor.cpp inc/SWektor.hh
-	g++ -c ${CXXFLAGS} -o obj/SWektor.o src/SWektor.cpp
 
 clean:
 	rm -f obj/*.o ./test_wektora

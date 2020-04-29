@@ -15,29 +15,45 @@ class SWektor {
     STyp  operator [] (unsigned int Ind) const { return _Wsp[Ind]; }
     STyp &operator [] (unsigned int Ind)       { return _Wsp[Ind]; }
 
-    SWektor<STyp,SWymiar> operator - (const SWektor<STyp,SWymiar> &Odjemnik) const
-    {
+    SWektor<STyp,SWymiar> operator - (const SWektor<STyp,SWymiar> &Odjemnik) const;
+    SWektor<STyp,SWymiar> operator * (double Mnoznik) const;
+    SWektor<STyp,SWymiar> operator + (const SWektor<STyp,SWymiar> &we);
+    SWektor<STyp,SWymiar> operator * (const SWektor<STyp,SWymiar> &we);
+    SWektor<STyp,SWymiar> operator / (STyp liczba);
+};
+
+
+template <typename STyp, int SWymiar>
+SWektor<STyp,SWymiar> SWektor<STyp,SWymiar>::operator - (const SWektor<STyp,SWymiar> &Odjemnik) const
+{
   SWektor<STyp,SWymiar>  Wynik;
 
   for (unsigned int Ind = 0; Ind < SWymiar; ++Ind) Wynik[Ind] = (*this)[Ind] - Odjemnik[Ind];
   return Wynik;
 }
-    SWektor<STyp,SWymiar> operator * (double Mnoznik) const
-    {
+
+
+template <typename STyp, int SWymiar>
+SWektor<STyp,SWymiar> SWektor<STyp,SWymiar>::operator * (double Mnoznik) const
+{
   SWektor<STyp,SWymiar>  Wynik;
 
   for (unsigned int Ind = 0; Ind < SWymiar; ++Ind) Wynik[Ind] = (*this)[Ind]*Mnoznik;
   return Wynik;  
 }
-    SWektor<STyp,SWymiar> operator + (const SWektor<STyp,SWymiar> &we)
-    {
+
+template <typename STyp, int SWymiar>
+SWektor<STyp,SWymiar> SWektor<STyp,SWymiar>::operator + (const SWektor<STyp,SWymiar> &we)
+{
     SWektor<STyp,SWymiar> Wynik;
 
     for (unsigned int Ind = 0; Ind < SWymiar; ++Ind) Wynik[Ind] = (*this)[Ind] + we[Ind];
   return Wynik;
 }
-    SWektor<STyp,SWymiar> operator * (const SWektor<STyp,SWymiar> &we)
-    {
+
+template <typename STyp, int SWymiar>
+SWektor<STyp,SWymiar> SWektor<STyp,SWymiar>::operator * (const SWektor<STyp,SWymiar> &we)
+{
     SWektor<STyp,SWymiar> Wynik;
 
     for(unsigned int Ind = 0;Ind<ROZMIAR;Ind++){
@@ -45,19 +61,16 @@ class SWektor {
     }
     return Wynik;
 }
-    SWektor<STyp,SWymiar> operator / (STyp liczba)
-    {
-    SWektor<STyp,SWymiar> Wynik;
+
+template <typename STyp, int SWymiar>
+SWektor<STyp,SWymiar> SWektor<STyp,SWymiar>::operator / (STyp liczba)
+{
+   SWektor<STyp,SWymiar> Wynik;
 
     for(int Ind=0;Ind<ROZMIAR;Ind++){
         Wynik[Ind]=Wynik[Ind]/liczba;
     }
-    return Wynik;
 }
-};
-
-
-
 
 template <typename STyp, int SWymiar>
 std::ostream& operator << (std::ostream &StrmWyj, const SWektor<STyp,SWymiar>& W)

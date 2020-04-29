@@ -1,6 +1,7 @@
 #include <iostream>
 #include "rozmiar.h"
 #include "SWektor.hh"
+#include "LZespolona.hh"
 
 
 

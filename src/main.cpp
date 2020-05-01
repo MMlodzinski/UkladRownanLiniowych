@@ -2,6 +2,8 @@
 #include "rozmiar.h"
 #include "SWektor.hh"
 #include "LZespolona.hh"
+#include "SMacierz.hh"
+#include "SUkladRownanLiniowych.hh"
 
 
 
@@ -17,9 +19,9 @@ using namespace std;
 
 int main()
 {
-/*  UkladRownanLiniowych   UklRown;  
-  Wektor nowy;
-  Macierz nowa;
+  SUkladRownanLiniowych<SMacierz<SWektor<double, ROZMIAR>, ROZMIAR>, SWektor<double, ROZMIAR>, ROZMIAR>   UklRown;  
+  SWektor<double, ROZMIAR> nowy;
+  SMacierz<SWektor<double, ROZMIAR>, ROZMIAR> nowa;
   
 
 
@@ -36,20 +38,26 @@ if(!cin.ios::eof()){
   
   cout << "\t Wektor bledu Ax-b = " <<   UklRown.bladRozwiazania(UklRown);
   cout << " Dlugosc wektora bledu |Ax-b| = " << UklRown.bladRozwiazania(UklRown).dlugosc() << endl;
-  */
-
+}
+/*
  cout << endl
        << " --------- Test klasy Wektor ----------" << endl
        << endl;
   
-  SWektor<double,ROZMIAR>    W, W_wynik;
+  SWektor<double,3>    W, W_wynik;
+  SMacierz<SWektor<double,3>,3> M;
   
-  for (unsigned int Ind = 0; Ind < ROZMIAR; ++Ind) {
+  
+
+    for (unsigned int Ind = 0; Ind < 3; ++Ind) {
+    for (unsigned int Ind = 0; Ind < 3; ++Ind) {
     W[Ind] = Ind;
+  }
+    M[Ind] = W;
   }
 
   cout << "  Wyswietlenie wspolrzednych wektora: W" << endl
-       << "        " << W << endl
+       << "        " << M << endl
        << endl;
 
   W_wynik = W*2;
@@ -61,7 +69,7 @@ if(!cin.ios::eof()){
   cout << "  Wyswietlenie wyniku: W-W*0.5" << endl
        << "        " << W_wynik << endl
        << endl;
- 
+ */
 
 
 }

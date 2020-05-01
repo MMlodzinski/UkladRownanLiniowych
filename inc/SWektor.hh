@@ -3,6 +3,7 @@
 
 
 #include <iostream>
+#include <math.h>
 
 
 
@@ -20,6 +21,7 @@ class SWektor {
     SWektor<STyp,SWymiar> operator + (const SWektor<STyp,SWymiar> &we);
     SWektor<STyp,SWymiar> operator * (const SWektor<STyp,SWymiar> &we);
     SWektor<STyp,SWymiar> operator / (STyp liczba);
+    STyp dlugosc();
 };
 
 
@@ -79,6 +81,16 @@ std::ostream& operator << (std::ostream &StrmWyj, const SWektor<STyp,SWymiar>& W
     StrmWyj << " " << W[Ind];
   }  
   return StrmWyj;
+}
+
+template <typename STyp, int SWymiar>
+STyp SWektor<STyp, SWymiar>::dlugosc(){
+    STyp dlugosc=0;
+    for(int i=0;i<SWymiar;i++){
+        dlugosc += pow(_Wsp[i], 2);
+    }
+    dlugosc = sqrt(dlugosc);
+    return dlugosc;
 }
 
 #endif

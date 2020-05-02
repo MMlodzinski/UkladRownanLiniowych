@@ -93,4 +93,14 @@ STyp SWektor<STyp, SWymiar>::dlugosc(){
     return dlugosc;
 }
 
+template <typename STyp, int SWymiar>
+std::istream& operator >> (std::istream &Strm, SWektor<STyp, SWymiar> &Wek)
+{
+    Strm.clear();
+    for(int i=0;i<ROZMIAR;i++){
+        if(!(Strm >> Wek[i])) Strm.setstate(std::ios::failbit);
+    }
+    return Strm;
+}
+
 #endif

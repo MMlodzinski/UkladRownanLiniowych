@@ -4,7 +4,7 @@
 CXXFLAGS= -c -g -Iinc -Wall -pedantic
 
 __start__: uklad_rownan
-	./uklad_rownan < rownanie_liniowe.dat
+	./uklad_rownan -z < rownanie_liniowe.dat
 
 uklad_rownan: obj/main.o obj/LZespolona.o
 	g++ -Wall -pedantic -o uklad_rownan obj/main.o obj/LZespolona.o

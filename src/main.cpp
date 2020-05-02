@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 #include "rozmiar.h"
 #include "SWektor.hh"
 #include "LZespolona.hh"
@@ -17,28 +18,47 @@ using namespace std;
  */
 
 
-int main()
+int main(int argc, char *argv[])
 {
-  SUkladRownanLiniowych<SMacierz<SWektor<double, ROZMIAR>, ROZMIAR>, SWektor<double, ROZMIAR>, ROZMIAR>   UklRown;  
-  SWektor<double, ROZMIAR> nowy;
-  SMacierz<SWektor<double, ROZMIAR>, ROZMIAR> nowa;
+  if(strcmp(argv[1],"r")){
+    SUkladRownanLiniowych<double, ROZMIAR>   UklRown;  
+    SWektor<double, ROZMIAR> nowy;
+    SMacierz<double, ROZMIAR> nowa;
+    if(!cin.ios::eof()){
+      cin >> UklRown;
+      cout << endl << " Start programu " << endl << endl;
+      cout << " Macierz A^T :" << endl;
+      cout << UklRown.WezMacierzRownania() << endl;
+      cout << " Wektor wyrazow wolnych b :" << endl;
+      cout << UklRown.WezWektorWyrazowWolnych() << endl;
+      cout << " Rozwiazanie x = (x1, x2, x3, x4, x5) :" << endl;
+      cout << UklRown.rozwiazUklad() << endl;
   
-
-
-    
-if(!cin.ios::eof()){
-  cin >> UklRown;
-  cout << endl << " Start programu " << endl << endl;
-  cout << " Macierz A^T :" << endl;
-  cout << UklRown.WezMacierzRownania() << endl;
-  cout << " Wektor wyrazow wolnych b :" << endl;
-  cout << UklRown.WezWektorWyrazowWolnych() << endl;
-  cout << " Rozwiazanie x = (x1, x2, x3) :" << endl;
-  cout << UklRown.rozwiazUklad() << endl;
+      cout << "\t Wektor bledu Ax-b = " <<   UklRown.bladRozwiazania(UklRown);
+      cout << " Dlugosc wektora bledu |Ax-b| = " << UklRown.bladRozwiazania(UklRown).dlugosc() << endl;
+    }
+  }
+  else if(strcmp(argv[1],"z")){
+    SUkladRownanLiniowych<double, ROZMIAR>   UklRown;  
+    SWektor<double, ROZMIAR> nowy;
+    SMacierz<double, ROZMIAR> nowa;
+    if(!cin.ios::eof()){
+      cin >> UklRown;
+      cout << endl << " Start programu " << endl << endl;
+      cout << " Macierz A^T :" << endl;
+      cout << UklRown.WezMacierzRownania() << endl;
+      cout << " Wektor wyrazow wolnych b :" << endl;
+      cout << UklRown.WezWektorWyrazowWolnych() << endl;
+      cout << " Rozwiazanie x = (x1, x2, x3) :" << endl;
+      cout << UklRown.rozwiazUklad() << endl;
   
-  cout << "\t Wektor bledu Ax-b = " <<   UklRown.bladRozwiazania(UklRown);
-  cout << " Dlugosc wektora bledu |Ax-b| = " << UklRown.bladRozwiazania(UklRown).dlugosc() << endl;
-}
+      cout << "\t Wektor bledu Ax-b = " <<   UklRown.bladRozwiazania(UklRown);
+      cout << " Dlugosc wektora bledu |Ax-b| = " << UklRown.bladRozwiazania(UklRown).dlugosc() << endl;
+    }
+  }
+  else{return 0;}
+
+ 
 /*
  cout << endl
        << " --------- Test klasy Wektor ----------" << endl

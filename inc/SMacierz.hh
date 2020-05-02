@@ -10,7 +10,7 @@ class SMacierz
   /*
   * tablica wektorow o rozmiarze ROZMIAR
   */
-  STyp tab[SWymiar];
+  SWektor<STyp,SWymiar> tab[SWymiar];
 
   public:
     /*
@@ -18,25 +18,24 @@ class SMacierz
     */
     SMacierz();
 
-    STyp operator [] (int Ind) const {return tab[Ind];}
-    STyp& operator [] (int Ind) {return tab[Ind];}
+    SWektor<STyp,SWymiar> operator [] (int Ind) const {return tab[Ind];}
+    SWektor<STyp,SWymiar>& operator [] (int Ind) {return tab[Ind];}
     /*
     *  przeciazenie operatora mnozenia dla operacji macierz*wektor, zwracajaca wektor 
     */
-    STyp operator * (STyp We);
+    SWektor<STyp,SWymiar> operator * (SWektor<STyp,SWymiar> We);
     /*
     * funkcja zwracajaca wyznacznik macierzy 
     */
-    double wyznacznik();
+    STyp wyznacznik();
     /*
     * metoda zamieniajaca wybrana z kolumn macierzy na podany wektor
     */
-    SMacierz<STyp,SWymiar> podstawKolumne(STyp We, int numerKolumny);
+    SMacierz<STyp,SWymiar> podstawKolumne(SWektor<STyp,SWymiar> We, int numerKolumny);
     /*
     * metoda - transpozycja macierzy
     */
     SMacierz<STyp,SWymiar> transpozycja();
-    std::istream& operator >> (std::istream &Strm, SMacierz<STyp,SWymiar> &Mac);
 };
 
 template <typename STyp, int SWymiar>
@@ -50,8 +49,8 @@ SMacierz<STyp,SWymiar>::SMacierz()
     }
 
 template <typename STyp, int SWymiar>
-STyp SMacierz<STyp,SWymiar>::operator*(STyp We){
-    STyp wynik;
+SWektor<STyp,SWymiar> SMacierz<STyp,SWymiar>::operator*(SWektor<STyp,SWymiar> We){
+    SWektor<STyp,SWymiar> wynik;
     for(int i=0; i<SWymiar; i++){
         for(int j=0; j<SWymiar; j++){
             wynik[i]=tab[j][i]*We[j]+wynik[i];
@@ -79,7 +78,7 @@ std::ostream& operator << (std::ostream &Strm, const SMacierz<STyp,SWymiar> &Mac
 }
 
 template <typename STyp, int SWymiar>
-double SMacierz<STyp,SWymiar>::wyznacznik(){
+STyp SMacierz<STyp,SWymiar>::wyznacznik(){
      double det;
      SMacierz<STyp,SWymiar> Ma;
      for(int i=0; i<SWymiar; i++){
@@ -105,7 +104,7 @@ double SMacierz<STyp,SWymiar>::wyznacznik(){
 }
 
 template <typename STyp, int SWymiar>
-SMacierz<STyp,SWymiar> SMacierz<STyp,SWymiar>::podstawKolumne(STyp We, int numerKolumny){
+SMacierz<STyp,SWymiar> SMacierz<STyp,SWymiar>::podstawKolumne(SWektor<STyp,SWymiar> We, int numerKolumny){
     for (int i=0; i<SWymiar; i++){
         tab[numerKolumny][i]=We[i];
     }
